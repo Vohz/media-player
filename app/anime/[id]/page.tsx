@@ -4,7 +4,12 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Play } from "lucide-react";
 
-export default function AnimePage({ params }: { params: { id: string } }) {
+export default async function AnimePage({
+  params,
+}: {
+  params: { id: string };
+}) {
+  const { id } = await params;
   return (
     <div className="min-h-screen bg-black text-white">
       {/* Hero de l'anime */}
@@ -20,13 +25,13 @@ export default function AnimePage({ params }: { params: { id: string } }) {
             <span className="text-zinc-400">2024</span>
           </div>
           <h1 className="text-5xl font-bold mb-4 text-white max-w-2xl">
-            Titre de lanime {params.id}
+            Titre de lanime {id}
           </h1>
           <p className="text-xl mb-6 text-zinc-300 max-w-xl">
             Description détaillée de lanime et de son histoire. Vous pouvez
             retrouver ici un résumé captivant de la série.
           </p>
-          <Link href={`/anime/${params.id}/watch/1`}>
+          <Link href={`/anime/${id}/watch/1`}>
             <Button
               size="lg"
               className="bg-blue-500 hover:bg-blue-600 text-white"
@@ -62,7 +67,7 @@ export default function AnimePage({ params }: { params: { id: string } }) {
                     dans cet épisode sans trop en révéler.
                   </p>
                 </div>
-                <Link href={`/anime/${params.id}/watch/${i + 1}`}>
+                <Link href={`/anime/${id}/episode/${i + 1}`}>
                   <Button className="bg-blue-500 hover:bg-blue-600 h-12 px-6">
                     <Play className="h-5 w-5" />
                   </Button>
